@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Artwork</title>
+    <style>
+        /* Reset and body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffefba, #ffffff);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form container styling */
+        form {
+            background: rgba(255, 250, 240, 0.9); /* Soft pastel color with slight transparency */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        /* Form heading */
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #555;
+        }
+
+        /* Input fields styling */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            background-color: #003f8a;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+        <h2>Upload Artwork</h2>
+        
+        <label for="title">Title of Work:</label>
+        <input type="text" id="title" name="title" required/>
+
+        <label for="type">Type of Work:</label>
+        <input type="text" id="type" name="type" required/>
+
+        <label for="size">Size of Work:</label>
+        <input type="text" id="size" name="size" required/>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" step="0.01" name="price" required/>
+
+        <label for="thumbnailImage">Thumbnail Image:</label>
+        <input type="file" id="thumbnailImage" name="thumbnailImage" accept="image/*" required/>
+
+        <label for="enlargedImage">Enlarged Image:</label>
+        <input type="file" id="enlargedImage" name="enlargedImage" accept="image/*" required/>
+
+        <button type="submit">Upload Artwork</button>
+    </form>
+</body>
+</html>

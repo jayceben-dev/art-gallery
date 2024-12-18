@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Show Artworks</title>
+    <style>
+        /* Reset and body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #ffefba);
+            color: #333;
+        }
+
+        /* Page container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #555;
+        }
+
+        /* Grid layout for artworks */
+        .artwork-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Individual artwork card */
+        .artwork-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Artwork image */
+        .artwork-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        /* Artwork details */
+        .artwork-details {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .artwork-details h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .artwork-details p {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        /* Price styling */
+        .artwork-details .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>All Artworks</h1>
+        <div class="artwork-grid">
+            <!-- Iterate through the artworks -->
+            <div class="artwork-card" th:each="artwork : ${artworks}">
+                <!-- Artwork Thumbnail -->
+                <img th:src="@{'/uploads/' + ${artwork.thumbnailImage}}" alt="Thumbnail" />
+                <!-- Artwork Details -->
+                <div class="artwork-details">
+                    <h3 th:text="${artwork.title}"></h3>
+                    <p>Type: <span th:text="${artwork.type}"></span></p>
+                    <p>Size: <span th:text="${artwork.size}"></span></p>
+                    <p class="price">Price: ₹<span th:text="${artwork.price}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
